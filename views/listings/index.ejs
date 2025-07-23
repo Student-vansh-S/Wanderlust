@@ -1,0 +1,213 @@
+<% layout("/layouts/boilerplate") %>    
+
+<style>
+  #filters{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .filter{
+    text-align: center;
+    margin-right: 2rem;
+    margin-top: 2rem;
+    opacity: 0.7;
+  }
+
+  .filter:hover{
+    opacity: 1;
+    cursor: pointer;
+  }
+
+  .filter p{
+    font-size: 0.8rem;
+  }
+
+  .tax-info{
+    display: none;
+  }
+
+  .tax-toggle{
+    border: 1px solid black;
+    border-radius: 1rem;
+    height: 3.25rem;
+    padding: 1rem;
+    margin-left: 3rem;
+    display: flex;
+    align-items: center;
+  }
+      .gallery-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .main-image {
+      flex: 2;
+      min-width: 300px;
+    }
+
+    .main-image img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .side-images {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .side-images img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .gallery-container {
+        flex-direction: column;
+      }
+
+      .side-images {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+</style>
+
+
+    <div id="filters">
+      <div class="filter"  data-category="trending">
+        <div >
+          <i class="fa-solid fa-fire"></i>
+        </div>
+        <p>Trending</p>
+      </div>
+      <div class="filter" data-category="rooms">
+        <div >
+          <i class="fa-solid fa-bed"></i>
+        </div>
+        <p>Rooms</p>
+      </div>
+      <div class="filter" data-category="iconic cities">
+        <div >
+          <i class="fa-solid fa-mountain-city"></i>
+        </div>
+        <p>Iconic Cities</p>
+      </div>
+      <div class="filter" data-category="mountains">
+        <div >
+          <i class="fa-solid fa-mountain"></i>
+        </div>
+        <p>Mountains</p>
+      </div>
+      <div class="filter" data-category="castles">
+        <div >
+          <i class="fa-brands fa-fort-awesome"></i>
+        </div>
+        <p>Castles</p>
+      </div>
+      <div class="filter" data-category="amazing pool">
+        <div >
+            <i class="fa-solid fa-person-swimming"></i>
+        </div>
+        <p>Amazing Pool</p>
+      </div>
+       <div class="filter" data-category="camping">
+        <div >
+          <i class="fa-solid fa-campground"></i>
+        </div>
+        <p>Camping</p>
+      </div>
+      <div class="filter" data-category="farms">
+        <div >
+            <i class="fa-solid fa-cow"></i>
+        </div>
+        <p>Farms</p>
+      </div>
+      <div class="filter" data-category="arctic">
+        <div >
+           <i class="fa-solid fa-snowflake"></i>
+        </div>
+        <p>Arctic</p>
+      </div>  
+      <div class="filter" data-category="dome">
+        <div >
+           <i class="fa-solid fa-igloo"></i>
+        </div>
+        <p>Dome</p>
+      </div>
+      <div class="filter" data-category="boat">
+        <div >
+           <i class="fa-solid fa-ship"></i>
+        </div>
+        <p>Boat</p>
+      </div>  
+
+      <div class="tax-toggle">
+        <div class="form-check-reverse form-switch">
+          <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
+          <label class="form-check-label" for="switchCheckDefault">Display total after taxes</label>
+        </div>
+      </div>
+  </div>
+
+  <div class="container py-4">
+    <div class="gallery-container">
+      <div class="main-image">
+        <img src="https://assets.simplotel.com/simplotel/image/upload/x_243,y_0,w_3882,h_2912,r_0,c_crop,q_80,fl_progressive/w_1350,f_auto,c_fit/stone-wood-riverfront-resort-siolim/PROPERTY_VIEW_h4rp5s" alt="Main View">
+      </div>
+      <div class="side-images">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkZW598rnqR19l72Rm_IclGRqqOpWQyYC5SA&s" alt="Image 1">
+        <img src="https://cdn.beachcomber-hotels.com/v9/sites/default/files/styles/slider_cluster_2_desktop/public/shandrani/shandrani-rooms-slider-d.webp?itok=e-NYyeYw" alt="Image 2">
+        <img src="https://5.imimg.com/data5/QW/RK/MY-14170015/resort-garden-designing-services.png" alt="Image 3">
+        <img src="https://www.sunpeaksresort.com/sites/default/files/inline-images/Hole16.jpg" alt="Image 4">
+      </div>
+    </div>
+  </div>
+
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
+        <% for(let Listing of allListings){ %>
+            <a href="/listings/<%= Listing._id %>" class="listing-link">
+            <div class="card col listing-card">
+                <img src="<%= Listing.image.url %>" class="card-img-top" alt="listing image" style="height: 20rem;">
+                <div class="card-img-overlay"></div>
+                <div class="card-body">
+                  <p class="card-text">
+                    <b><%= Listing.title %></b> <br>
+                    <%= Listing.price.toLocaleString("en-IN") %> /night
+                    <i class="tax-info"> &nbsp; &nbsp;+18% GST</i>
+                  </p>
+                </div>
+              </div>
+            <%}%>
+        </a>
+    </div>
+    
+
+<script>
+  let taxSwitch = document.getElementById("switchCheckDefault");
+  taxSwitch.addEventListener("click",()=>{
+    let taxInfo = document.getElementsByClassName("tax-info");
+    for (info of taxInfo){
+      if(info.style.display != "inline"){
+        info.style.display= "inline";
+      } else{
+        info.style.display= "none";
+      }
+    }
+  });
+
+  const filters = document.querySelectorAll(".filter");
+  filters.forEach(f => {
+    f.addEventListener("click", () => {
+      const category = f.dataset.category.toLowerCase();
+      window.location.href = `/listings/filter/${category}`;
+    });
+  });
+
+</script>    
