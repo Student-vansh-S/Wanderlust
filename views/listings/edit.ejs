@@ -15,22 +15,23 @@
                 <div class="invalid-feedback">Please enter a short description</div>
             </div>
             <div class="mb-3">
-                    <label for="category" class="form-label">Select your listing Category</label>
-                    <select name="listing[category]" id="category" class="form-select" required>
-                        <option value=""><%= listing.category %></option>
-                        <option value="rooms">Rooms</option>
-                        <option value="trending">Trending</option>
-                        <option value="iconic cities">Iconic Cities</option>
-                        <option value="mountains">Mountains</option>
-                        <option value="castles">Castles</option>
-                        <option value="amazing pool">Amazing Pool</option>
-                        <option value="camping">Camping</option>
-                        <option value="farms">Farms</option>
-                        <option value="arctic">Arctic</option>
-                        <option value="dome">Dome</option>
-                        <option value="boat">Boat</option>
-                    </select> 
-                </div>
+                <label for="category" class="form-label">Select your listing Category</label>
+                <select name="listing[category]" id="category" class="form-select" required>
+                    <option disabled selected value> -- select a category -- </option>
+                    <option value="rooms" <%= listing.category === "rooms" ? "selected" : "" %>>Rooms</option>
+                    <option value="trending" <%= listing.category === "trending" ? "selected" : "" %>>Trending</option>
+                    <option value="iconic cities" <%= listing.category === "iconic cities" ? "selected" : "" %>>Iconic Cities</option>
+                    <option value="mountains" <%= listing.category === "mountains" ? "selected" : "" %>>Mountains</option>
+                    <option value="castles" <%= listing.category === "castles" ? "selected" : "" %>>Castles</option>
+                    <option value="amazing pool" <%= listing.category === "amazing pool" ? "selected" : "" %>>Amazing Pool</option>
+                    <option value="camping" <%= listing.category === "camping" ? "selected" : "" %>>Camping</option>
+                    <option value="farms" <%= listing.category === "farms" ? "selected" : "" %>>Farms</option>
+                    <option value="arctic" <%= listing.category === "arctic" ? "selected" : "" %>>Arctic</option>
+                    <option value="dome" <%= listing.category === "dome" ? "selected" : "" %>>Dome</option>
+                    <option value="boat" <%= listing.category === "boat" ? "selected" : "" %>>Boat</option>
+                </select>
+            </div>
+
             <div class="col-4 mb-2">
             <p>  Original Listing Image</p>
             <img class="img-fluid h-100" src="<%= originalImageUrl %>" alt="listing img">
